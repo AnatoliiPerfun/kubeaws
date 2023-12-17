@@ -1,5 +1,13 @@
-FROM alpine:latest
+FROM alpine
 
-RUN apk add --no-cache curl
+RUN apk add --no-cache bash
 
-CMD [ "echo", "Hello World" ]
+WORKDIR /app
+
+COPY entrypoint.sh /app/entrypoint.sh
+
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+
